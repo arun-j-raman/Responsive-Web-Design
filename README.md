@@ -1,2 +1,2 @@
 # HTML
-Contains simple HTML projetcs
+Contains projetcs related to Responsive Web Design
