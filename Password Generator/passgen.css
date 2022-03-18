@@ -1,0 +1,156 @@
+body {
+    background: linear-gradient(to bottom right, rgb(50, 87, 250), rgb(1, 17, 90));
+    font-family: 'Josefin Sans', sans-serif;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    padding: 40px;
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid rgb(50, 87, 250);
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.3);
+    position: absolute;
+}
+
+.el {
+    display: flex;
+}
+
+.metr {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+
+}
+
+.strn {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.inp {
+    padding: 8px;
+    color: #000;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 800;
+    text-align: center;
+    border: 2px solid rgb(43, 43, 58);
+    border-radius: 4px;
+}
+
+.inp:focus {
+    outline: none;
+}
+
+button {
+    width: 40px;
+    margin-left: 8px;
+    border: 2px solid rgb(43, 43, 58);
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+label, p {
+    color: #000;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 800;
+    display: inline;
+    margin: 10px 0px 10px 0px;
+}
+
+.slidecontainer {
+    width: 100%;
+    /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;
+    /* Override default CSS styles */
+    appearance: none;
+    width: 100%;
+    /* Full-width */
+    height: 25px;
+    /* Specified height */
+    background: #d3d3d3;
+    /* Grey background */
+    outline: none;
+    /* Remove outline */
+    opacity: 0.7;
+    /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s;
+    /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: rgb(50, 87, 250);
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: rgb(50, 87, 250);
+    cursor: pointer;
+}
+
+.info {
+    margin-bottom: 30px;
+    position: absolute;
+}
+
+.repo
+{
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 20px;
+}
+
+a:link, a:visited {
+    background-color: rgb(41, 72, 207);
+    color: white;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 20px;
+}
