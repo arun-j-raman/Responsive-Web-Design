@@ -1,125 +1,85 @@
 let locn = document.getElementById('location');
 let tempicon = document.getElementById('tempicon');
 let tempvalue = document.getElementById('tempvalue');
-let climate = document.getElementById('weather');
+let weather = document.getElementById('weather');
+let humidityPerc = document.getElementById('humidity');
+let windspeedval = document.getElementById('wind');
+let symbol = document.getElementById('metric');
+let visibVal = document.getElementById('visibility');
 const searchInp = document.getElementById('search');
 const searchButton = document.getElementById('searchbtn');
+const resetButton = document.getElementById('reset');
+const apikey = "API KEY GOES HERE";
 
 searchButton.addEventListener("click", (e) => {
     e.preventDefault();
-    getWeather(searchInp.value);
+    if (!onlySpaces(searchInp.value) && searchInp.value != "") {
+        getWeather(searchInp.value);
+    }
     searchInp.value = '';
 });
 
-function getIcon(id) {
+resetButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    reset();
+});
 
-    let d = new Date();
+function reset() {
+    locn.textContent = "Hi there! I am your Weather Man.";
+    weather.textContent = "";
+    humidityPerc.textContent = "Enter the name of a state, city, district, or locality, and I'll get you the details in a jiffy.";
+    windspeedval.textContent = "";
+    visibVal.textContent = "";    
+    tempvalue.textContent = "";
+    tempicon.style.visibility = "visible";
+    tempicon.src = "./icons/wman.png";
+    symbol.style.visibility = "hidden";
+    searchInp.value = '';
+}
 
-    //2xx Thunderstorm
-    if (id >= 200 && id < 300) {
-        tempicon.src = "./icons/thunder.svg";
-    }
-
-    //3xx Drizzle
-    else if (id >= 300 && id < 500) {
-        tempicon.src = "./icons/rainy-4.svg";
-    }
-
-    //5xx Rain
-    else if (id >= 500 && id < 600) {
-        if (id <= 504) {
-            tempicon.src = "./icons/rainy-3.svg";
-        }
-        else {
-            tempicon.src = "./icons/rainy-6.svg";
-        }
-    }
-
-    //6xx Snow
-    else if (id >= 600 && id < 700) {
-        tempicon.src = "./icons/snowy-1.svg";
-    }
-
-    //7xx Atmosphere
-    else if (id < 700 && id < 800) {
-        tempicon.src = "./icons/weather.svg";
-    }
-
-    //800 Clear
-    else if (id == 800) {
-        if (d.getHours() < 18)
-            tempicon.src = "./icons/day.svg";
-        else
-            tempicon.src = "./icons/night.svg";
-    }
-
-    //8XX Clouds
-    else if (id > 800) {
-        if (d.getHours() < 18)
-            tempicon.src = "./icons/cloudy-day-2.svg";
-        else
-            tempicon.src = "./icons/cloudy-night-2.svg";
-    }
+function onlySpaces(str) {
+    return /^\s*$/.test(str);
 }
 
 const getWeather = async (city) => {
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid={apikey}`,
-            { mode: 'cors' }
-        );
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apikey}`);
+
 
         const weatherData = await response.json();
         console.log(weatherData);
-        const { name } = weatherData;
-        const { feels_like } = weatherData.main;
-        const { id, main } = weatherData.weather[0];
+        const { name, visibility } = weatherData;
+        const { speed } = weatherData.wind;
+        const { feels_like, humidity } = weatherData.main;
+        const { icon, description } = weatherData.weather[0];
 
-        locn.textContent = name;
-        climate.textContent = main;
-        tempvalue.textContent = Math.round(feels_like - 273);
+        locn.textContent = "Weather in " + name;
+        weather.textContent = "Description: " + description;
+        humidityPerc.textContent = "Humidity: " + humidity + " %";
+        windspeedval.textContent = "Wind Speed: " + speed + " kmph";
+        visibVal.textContent = "Visibility: " + (visibility / 1000) + " km(s)";
+        tempvalue.textContent = Math.round(feels_like);
+        tempicon.style.visibility = "visible";
+        symbol.style.visibility = "visible";
+        tempicon.src = "./icons/" + icon + ".png";
 
-        getIcon(id);
 
     }
 
     catch (error) {
-        alert("Invalid Input");
+        locn.textContent = "Data Unavailable";
+        weather.textContent = "Possible Causes:";
+        humidityPerc.textContent = "1. No Internet Connection.";
+        windspeedval.textContent = "2. Either the input value is invalid or the weather station database does not contain it.";
+        visibVal.textContent = "3. Javascript is disabled, or the API Key used in the script is inactive or invalid.";
+        tempvalue.textContent = "";
+        tempicon.style.visibility = "visible";
+        tempicon.src = "./icons/unavailable.png";
+        symbol.style.visibility = "hidden";
+
     }
 }
 
-window.addEventListener("load", () => {
-    let long;
-    let lat;
-    const proxy = "https://cors-anywhere.herokuapp.com/";
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            long = position.coords.longitude;
-            lat = position.coords.latitude;
-            const api = `${proxy}api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid={apikey}`;
-
-            fetch(api).then((response) => {
-                return response.json();
-            })
-
-                .then(data => {
-                    const { name } = data;
-                    const { feels_like } = data.main;
-                    const { id, main } = data.weather[0];
-
-                    locn.textContent = name;
-                    climate.textContent = main;
-                    tempvalue.textContent = Math.round(feels_like - 273);
-
-                    console.log(data);
-
-                    getIcon(id);
-
-
-                });
-        }
-
-        )
-    }
-
+$(document).ready(function () {
+    reset();
 });
