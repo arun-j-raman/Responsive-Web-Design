@@ -1,0 +1,137 @@
+body {
+    background-image: url("../images/pexels-karolina-grabowska-5706001.jpg");
+    /* Full height */
+    height: 70%;
+    text-align: center;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+label
+{
+    display: inline-block;
+}
+
+#tblDiv {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+#postoffice, #postoffice2 {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+}
+
+#postoffice td,
+#postoffice th,
+#postoffice2 td,
+#postoffice2 th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#postoffice tr:nth-child(even),
+#postoffice2 tr:nth-child(even) {
+    background-color: lightyellow;
+}
+
+#postoffice tr:hover,
+#postoffice2 tr:hover {
+    background-color: rgb(245, 163, 96);
+}
+
+#postoffice th,
+#postoffice2 th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(201, 0, 0);
+    color: white;
+}
+
+
+
+.header {
+    padding: 10px 16px;
+    background: rgb(201, 0, 0);
+
+    color: white;
+}
+
+.content {
+    padding: 16px;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.sticky+.content {
+    padding-top: 102px;
+}
+
+#img {
+    size: 2.5cm;
+}
+
+input {
+    width: 360px;
+    overflow: hidden;
+    font-size: 20px;
+    margin: 18px 0;
+    padding: 8px 0;
+    border: none;
+    border-bottom: 3px solid rgb(201, 0, 0);
+    color: maroon;
+    outline: none;
+    background: none;
+    text-transform: capitalize;
+
+}
+
+#find, 
+#resetBtn {
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: rgb(201, 0, 0);
+    border-radius: 5px;
+    margin-left: 5px;
+    padding: 11px;
+    border: 2px solid rgb(201, 0, 0);
+    display: inline-block;
+    transition: all 0.4 ease 0s;
+}
+
+#find:hover,
+#resetBtn:hover {
+    color: #000;
+    background: #fff;
+    border-color: #fff;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 40px;
+    width: 100%;
+    background-color: rgb(201, 0, 0);
+    color: white;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+
+}
