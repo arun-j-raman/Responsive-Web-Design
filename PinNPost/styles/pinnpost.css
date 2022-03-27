@@ -11,7 +11,7 @@ body {
 
 label
 {
-    display: inline-block;
+    display: block;
 }
 
 #tblDiv {
